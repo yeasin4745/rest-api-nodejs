@@ -33,7 +33,7 @@
 
 1. **রিপোজিটরি ক্লোন করুন**
 ```bash
-git clone https://github.com/yourusername/rest-api-nodejs.git
+git clone https://github.com/yeasin4745/rest-api-nodejs.git
 cd rest-api-nodejs
 ```
 
