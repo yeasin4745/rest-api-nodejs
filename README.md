@@ -1,264 +1,91 @@
-# 🚀 REST API with Node.js & Express
+# REST API with Node.js and Express
 
-একটি সম্পূর্ণ RESTful API যা Node.js এবং Express.js ব্যবহার করে তৈরি। এই প্রজেক্টে সকল CRUD অপারেশন (Create, Read, Update, Delete) রয়েছে।
+This project is a simple, clean, and refactored RESTful API built with Node.js and Express. It provides basic CRUD (Create, Read, Update, Delete) functionality for managing a list of users.
 
-## 📋 বিষয়বস্তু
+## Features
 
-- [বৈশিষ্ট্যসমূহ](#বৈশিষ্ট্যসমূহ)
-- [ইন্সটলেশন](#ইন্সটলেশন)
-- [ব্যবহারবিধি](#ব্যবহারবিধি)
-- [API Endpoints](#api-endpoints)
-- [উদাহরণ](#উদাহরণ)
-- [প্রযুক্তি স্ট্যাক](#প্রযুক্তি-স্ট্যাক)
+- **Express.js**: Fast, unopinionated, minimalist web framework for Node.js.
+- **CORS Enabled**: Cross-Origin Resource Sharing is enabled for all routes.
+- **CRUD Operations**: Full support for creating, reading, updating, and deleting users.
+- **JSON-Based**: The API uses JSON for requests and responses.
+- **Error Handling**: Basic error handling for 404 (Not Found) and 500 (Internal Server Error) responses.
 
-## ✨ বৈশিষ্ট্যসমূহ
+## Prerequisites
 
-- ✅ **GET** - সব ডেটা অথবা নির্দিষ্ট ডেটা পড়া
-- ✅ **POST** - নতুন ডেটা তৈরি করা
-- ✅ **PUT** - বিদ্যমান ডেটা আপডেট করা
-- ✅ **DELETE** - ডেটা মুছে ফেলা
-- ✅ CORS সাপোর্ট
-- ✅ JSON Response Format
-- ✅ Error Handling
-- ✅ Clean Code Structure
+- [Node.js](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
 
-## 🛠️ ইন্সটলেশন
+## Installation
 
-### প্রয়োজনীয় সফটওয়্যার
+1.  **Clone the repository:**
 
-- Node.js (v14 অথবা উপরের ভার্সন)
-- npm অথবা yarn
+    ```bash
+    git clone https://github.com/yeasin4745/rest-api-nodejs.git
+    cd rest-api-nodejs
+    ```
 
-### ধাপসমূহ
+2.  **Install dependencies:**
 
-1. **রিপোজিটরি ক্লোন করুন**
-```bash
-git clone https://github.com/yeasin4745/rest-api-nodejs.git
-cd rest-api-nodejs
-```
+    ```bash
+    npm install
+    ```
 
-2. **Dependencies ইন্সটল করুন**
-```bash
-npm install
-```
+## Usage
 
-3. **সার্ভার চালু করুন**
-```bash
-# Production mode
-npm start
+-   **Start the server:**
 
-# Development mode (nodemon দিয়ে)
-npm run dev
-```
+    ```bash
+    npm start
+    ```
 
-4. **ব্রাউজারে যান**
-```
-http://localhost:5000
-```
+-   **Start the server in development mode (with auto-reload):**
 
-## 🎯 ব্যবহারবিধি
+    ```bash
+    npm run dev
+    ```
 
-সার্ভার চালু হওয়ার পর নিচের endpoints গুলো ব্যবহার করতে পারবেন।
+The server will be running at `http://localhost:5000`.
 
-## 📡 API Endpoints
+## API Endpoints
 
-### Base URL
-```
-http://localhost:5000/api
-```
+The base URL for all endpoints is `/api/users`.
 
-### 1. সব ইউজার দেখানো (GET)
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/` | Shows a welcome message and API information. |
+| `GET` | `/api/users` | Retrieves a list of all users. |
+| `GET` | `/api/users/:id` | Retrieves a single user by their ID. |
+| `POST` | `/api/users` | Creates a new user. |
+| `PUT` | `/api/users/:id` | Updates an existing user. |
+| `DELETE` | `/api/users/:id` | Deletes a user. |
 
-**Endpoint:** `GET /api/users`
-
-**Response:**
-```json
-{
-  "success": true,
-  "count": 2,
-  "data": [
-    {
-      "id": 1,
-      "name": "Yeasin",
-      "email": "yeasin@example.com",
-      "role": "Full-Stack Developer"
-    }
-  ]
-}
-```
-
-### 2. নির্দিষ্ট ইউজার দেখানো (GET by ID)
-
-**Endpoint:** `GET /api/users/:id`
-
-**Example:** `GET /api/users/1`
-
-**Response:**
-```json
-{
-  "success": true,
-  "data": {
-    "id": 1,
-    "name": "Yeasin",
-    "email": "yeasin@example.com",
-    "role": "Full-Stack Developer"
-  }
-}
-```
-
-### 3. নতুন ইউজার তৈরি (POST)
-
-**Endpoint:** `POST /api/users`
+### `POST /api/users`
 
 **Request Body:**
+
 ```json
 {
-  "name": "Rahman",
-  "email": "rahman@example.com",
-  "role": "Backend Developer"
+  "name": "New User",
+  "email": "new.user@example.com",
+  "role": "Developer"
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "message": "User created successfully",
-  "data": {
-    "id": 3,
-    "name": "Rahman",
-    "email": "rahman@example.com",
-    "role": "Backend Developer"
-  }
-}
-```
-
-### 4. ইউজার আপডেট (PUT)
-
-**Endpoint:** `PUT /api/users/:id`
-
-**Example:** `PUT /api/users/1`
+### `PUT /api/users/:id`
 
 **Request Body:**
+
 ```json
 {
-  "name": "Yeasin Ahmed",
-  "role": "Senior Full-Stack Developer"
+  "name": "Updated Name",
+  "email": "updated.email@example.com"
 }
 ```
 
-**Response:**
-```json
-{
-  "success": true,
-  "message": "User updated successfully",
-  "data": {
-    "id": 1,
-    "name": "Yeasin Ahmed",
-    "email": "yeasin@example.com",
-    "role": "Senior Full-Stack Developer"
-  }
-}
-```
+## Contributing
 
-### 5. ইউজার মুছে ফেলা (DELETE)
+Contributions are welcome! Please feel free to submit a pull request.
 
-**Endpoint:** `DELETE /api/users/:id`
+## License
 
-**Example:** `DELETE /api/users/1`
-
-**Response:**
-```json
-{
-  "success": true,
-  "message": "User deleted successfully",
-  "data": {
-    "id": 1,
-    "name": "Yeasin",
-    "email": "yeasin@example.com",
-    "role": "Full-Stack Developer"
-  }
-}
-```
-
-## 💡 উদাহরণ
-
-### Postman দিয়ে টেস্ট করা
-
-1. Postman ওপেন করুন
-2. নতুন Request তৈরি করুন
-3. Method সিলেক্ট করুন (GET/POST/PUT/DELETE)
-4. URL লিখুন: `http://localhost:5000/api/users`
-5. POST/PUT এর জন্য Body তে JSON ডেটা দিন
-6. Send বাটনে ক্লিক করুন
-
-### cURL দিয়ে টেস্ট করা
-
-```bash
-# GET সব ইউজার
-curl http://localhost:5000/api/users
-
-# POST নতুন ইউজার
-curl -X POST http://localhost:5000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Karim","email":"karim@example.com","role":"Developer"}'
-
-# PUT ইউজার আপডেট
-curl -X PUT http://localhost:5000/api/users/1 \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Yeasin Updated"}'
-
-# DELETE ইউজার মুছুন
-curl -X DELETE http://localhost:5000/api/users/1
-```
-
-### JavaScript Fetch API দিয়ে
-
-```javascript
-// GET Request
-fetch('http://localhost:5000/api/users')
-  .then(response => response.json())
-  .then(data => console.log(data));
-
-// POST Request
-fetch('http://localhost:5000/api/users', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    name: 'Rahim',
-    email: 'rahim@example.com',
-    role: 'Designer'
-  })
-})
-  .then(response => response.json())
-  .then(data => console.log(data));
-```
-
-## 🔧 প্রযুক্তি স্ট্যাক
-
-- **Node.js** - JavaScript Runtime
-- **Express.js** - Web Framework
-- **CORS** - Cross-Origin Resource Sharing
-- **Nodemon** - Development Tool (Auto-restart)
-
-## 📂 প্রজেক্ট স্ট্রাকচার
-
-```
-rest-api-nodejs/
-│
-├── server.js          # Main server file
-├── package.json       # Dependencies এবং scripts
-├── README.md          # Documentation
-└── .gitignore         # Git ignore file
-```
-
-## 🚧 পরবর্তী উন্নয়ন
-
-- [ ] MongoDB ডাটাবেস সংযোগ
-- [ ] Authentication (JWT)
-- [ ] Input Validation (Joi/Express-validator)
-- [ ] API Rate Limiting
-- [ ] Logging System
-- [ ] Unit Testing
+This project is licensed under the MIT License.
